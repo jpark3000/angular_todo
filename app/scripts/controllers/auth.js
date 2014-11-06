@@ -9,7 +9,7 @@
  */
 var baseUrl = "http://recruiting-api.nextcapital.com"
 
-angular.module('todoApp')
+angular.module('todoApp.controllers', [])
   .controller('AuthCtrl', function ($scope, $http, $location, $window) {
     $scope.signUp = function(data) {
       $http.post(baseUrl + "/users", data).

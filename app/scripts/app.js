@@ -8,8 +8,11 @@
  *
  * Main module of the application.
  */
-angular.module('todoApp', ['ngRoute', 'ngResource']).
-config(function($routeProvider) {
+
+var todoApp = angular.module('todoApp', ['todoApp.controllers', 'ngRoute', 'ngResource']);
+
+
+todoApp.config(function($routeProvider) {
   $routeProvider
     .when('/', {
       templateUrl: 'views/auth.html',
@@ -20,3 +23,4 @@ config(function($routeProvider) {
     //   controller: 'TodoCtrl'
     // });
 });
+
