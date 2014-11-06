@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 
-var todoApp = angular.module('todoApp', ['todoApp.controllers', 'ngRoute', 'ngResource']);
+var todoApp = angular.module('todoApp', ['todoApp.controllers', 'todoApp.services', 'ngRoute', 'ngResource']);
 
 
 todoApp.config(function($routeProvider) {
