@@ -7,6 +7,6 @@
     <label for="password">Password</label>
     <input id="password" type="password" placeholder="Password" ng-model="formInfo.password">
   </div>
-  <button ng-click="signUp(formInfo)">Sign Up</button>
-  <button ng-click="logIn(formInfo)">Log In</button>
+  <button ng-click="auth(formInfo, '')">Sign Up</button>
+  <button ng-click="auth(formInfo, '/sign_in')">Log In</button>
 </form>
