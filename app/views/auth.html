@@ -1,0 +1,12 @@
+<form ng-controller="AuthCtrl">
+  <div class="form-input">
+    <label for="email">Email</label>
+    <input id="email" placeholder="Email" ng-model="formInfo.email">
+  </div>
+  <div class="form-input">
+    <label for="password">Password</label>
+    <input id="password" type="password" placeholder="Password" ng-model="formInfo.password">
+  </div>
+  <button ng-click="signUp(formInfo)">Sign Up</button>
+  <button ng-click="logIn(formInfo)">Log In</button>
+</form>
