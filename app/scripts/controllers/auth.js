@@ -9,7 +9,7 @@
  */
 
 
-angular.module('todoApp.controllers', [])
+angular.module('todoApp.controllers')
   .controller('AuthCtrl', function ($scope, $location, auth) {
     $scope.authorize = function(data, url) {
       auth.request(data, url)
