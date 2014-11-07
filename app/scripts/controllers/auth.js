@@ -11,7 +11,7 @@
 
 angular.module('todoApp.controllers', [])
   .controller('AuthCtrl', function ($scope, $location, auth) {
-    $scope.auth = function(data, url) {
+    $scope.authorize = function(data, url) {
       auth.request(data, url)
         .then(function() {
           $location.path('/todos');
