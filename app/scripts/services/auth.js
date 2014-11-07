@@ -18,6 +18,5 @@ angular.module('todoApp.services', [])
         });
       return deferred.promise;
     }
-
     return service;
   })
