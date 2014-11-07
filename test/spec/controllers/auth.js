@@ -1,8 +1,6 @@
 'use strict';
 
 describe('Controller: AuthCtrl', function () {
-
-
   // load the controller's module
   beforeEach(module('todoApp'));
 
