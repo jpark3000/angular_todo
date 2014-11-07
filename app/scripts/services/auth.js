@@ -10,7 +10,7 @@ angular.module('todoApp.services', [])
       $http.post(baseUrl + url, data)
         .success(function(data) {
           $window.sessionStorage.userId = data.id;
-          $window.sessionStorage.user = data.api_token;
+          $window.sessionStorage.apiToken = data.api_token;
           deferred.resolve(data)
         })
         .error(function(data) {
