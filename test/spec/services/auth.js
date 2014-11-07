@@ -6,27 +6,46 @@ describe('Service: auth', function () {
   beforeEach(module('todoApp'));
 
   // instantiate service
-  var auth, httpMock, postData, succesfulResponse, window;
+  var auth, postData, succesfulResponse, window, httpBackend;
   var baseUrl = 'http://recruiting-api.nextcapital.com/users'
   
   beforeEach(inject(function (_auth_, $httpBackend, $window) {
     auth = _auth_;
-    httpMock = $httpBackend
-    window = $window
-    postData = {'email': '99@1.com', 'password': '1'}
-    succesfulResponse = {'api_token':'123', 'email':'99@1.com', 'id':1, 'todos':[]}
-    
-    httpMock.expectPOST(baseUrl, postData).respond(succesfulResponse)
-    auth.request(postData, '')
-    httpMock.flush()
+    window = $window;
+    httpBackend = $httpBackend;
+    postData = {'email': '99@1.com', 'password': '1'};
+    succesfulResponse = {'api_token':'123', 'email':'99@1.com', 'id':1, 'todos':[]};
   }));
 
-  it('should store user id in sessionStorage', function() {
-    expect(window.sessionStorage.userId).toBe('1')
+  describe('successful authentication', function() {
+    beforeEach(function() {
+      httpBackend.expectPOST(baseUrl, postData).respond(succesfulResponse)
+      auth.request(postData, '')
+      httpBackend.flush()
+    });
+    
+    it('should store user id in sessionStorage', function() {
+      expect(window.sessionStorage.userId).toBe('1')
+    });
+
+    it('should store api_token in sessionStorage', function() {
+      expect(window.sessionStorage.apiToken).toBe('123')
+    });
+
+    it('should set isAuthenticated to true', function() {
+      expect(auth.isAuthenticated).toBe(true);
+    });
   });
 
-  it('should store api_token in sessionStorage', function() {
-    expect(window.sessionStorage.apiToken).toBe('123')
-  });
+  describe('unsuccessful auth', function() {
+    beforeEach(function() {
+      httpBackend.expectPOST(baseUrl, postData).respond(500, '')
+      auth.request(postData, '')
+      httpBackend.flush()
+    });
 
+    it('should set isAuthenticated to false', function() {
+      expect(auth.isAuthenticated).toBe(false);
+    });
+  });
 });
