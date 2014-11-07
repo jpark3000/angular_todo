@@ -8,8 +8,12 @@
  *
  * Main module of the application.
  */
+angular.module('todoApp.controllers', []);
+angular.module('todoApp.services', []);
 
-var todoApp = angular.module('todoApp', ['todoApp.controllers', 'todoApp.services', 'ngRoute', 'ngResource']);
+var baseUrl = "http://recruiting-api.nextcapital.com"
+
+var todoApp = angular.module('todoApp', ['ngRoute', 'ngResource', 'todoApp.controllers', 'todoApp.services']);
 
 
 todoApp.config(function($routeProvider) {
@@ -18,9 +22,8 @@ todoApp.config(function($routeProvider) {
       templateUrl: 'views/auth.html',
       controller: 'AuthCtrl'
     })
-    // .when('/todos', {
-    //   templateUrl: 'views/todos.html', 
-    //   controller: 'TodoCtrl'
-    // });
+    .when('/todos', {
+      templateUrl: 'views/todos.html', 
+      controller: 'TodosCtrl'
+    })
 });
-
