@@ -1,0 +1,34 @@
+input {
+  width: 100%;
+  height: 30px;
+  font-size: 18px;
+  font-family: inherit;
+  border-radius: 10px;
+  border: none;
+  border: 1px solid #cdc9c9;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+}
+
+.form-input {
+  padding-bottom: 10px;
+}
+
+/* Sign Up and Log In page*/
+
+.auth-form {
+  margin: 160px auto;
+  width: 25%;
+}
+
+#signup-link {
+  float: left;
+}
+
+#login-link {
+  float: right;
+}
