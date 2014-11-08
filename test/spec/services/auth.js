@@ -7,9 +7,8 @@ describe('Service: auth', function () {
 
   // instantiate service
   var auth, postData, succesfulResponse, window, httpBackend;
-  var baseUrl = 'http://recruiting-api.nextcapital.com/users'
   
-  beforeEach(inject(function (_auth_, $httpBackend, $window) {
+  beforeEach(inject(function(_auth_, $httpBackend, $window) {
     auth = _auth_;
     window = $window;
     httpBackend = $httpBackend;
@@ -19,7 +18,7 @@ describe('Service: auth', function () {
 
   describe('successful authentication', function() {
     beforeEach(function() {
-      httpBackend.expectPOST(baseUrl, postData).respond(succesfulResponse)
+      httpBackend.expectPOST(baseUrl + '/users', postData).respond(succesfulResponse)
       auth.request(postData, '')
       httpBackend.flush()
     });
@@ -37,9 +36,9 @@ describe('Service: auth', function () {
     });
   });
 
-  describe('unsuccessful auth', function() {
+  describe('unsuccessful authentication', function() {
     beforeEach(function() {
-      httpBackend.expectPOST(baseUrl, postData).respond(500, '')
+      httpBackend.expectPOST(baseUrl + '/users', postData).respond(500, '')
       auth.request(postData, '')
       httpBackend.flush()
     });
