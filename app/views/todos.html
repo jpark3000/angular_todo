@@ -3,7 +3,7 @@
   <ul>
     <li ng-repeat="todo in todos"> 
       <div ng-hide="todo.editable">
-        <input type="checkbox" ng-model="todo.is_complete">
+        <input type="checkbox" ng-model="todo.is_complete" ng-change="updateTodo(todo, $index)">
         <p>{{todo.description}}</p>
         <button ng-click="edit(todo)">Edit</button>
       </div>
