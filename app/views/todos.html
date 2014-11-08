@@ -1,7 +1,7 @@
 <div ng-controller="TodosCtrl">
   <h1>Todos</h1>
   <a href="#" ng-click="signOut()">Sign Out</a>
-  <ul>
+  <ul ui-sortable ng-model="todos">
     <li ng-repeat="todo in todos"> 
       <div ng-hide="todo.editable">
         <input type="checkbox" ng-model="todo.is_complete" ng-change="updateTodo(todo, $index)">
