@@ -32,19 +32,27 @@ describe('Service: auth', function () {
     });
 
     it('should set isAuthenticated to true', function() {
-      expect(auth.isAuthenticated).toBe(true);
+      expect(auth.isAuthenticated()).toBe(true);
+    });
+
+    it('should sign out succesfully', function() {
+      httpBackend.expectDELETE(baseUrl + '/users/sign_out').respond('')
+      auth.signOut()
+      httpBackend.flush()
+      expect(auth.isAuthenticated()).toBe(false)
     });
   });
 
   describe('unsuccessful authentication', function() {
     beforeEach(function() {
-      httpBackend.expectPOST(baseUrl + '/users', postData).respond(500, '')
-      auth.request(postData, '')
-      httpBackend.flush()
+      window.sessionStorage.clear();
+      httpBackend.expectPOST(baseUrl + '/users', postData).respond(500, '');
+      auth.request(postData, '');
+      httpBackend.flush();
     });
 
     it('should set isAuthenticated to false', function() {
-      expect(auth.isAuthenticated).toBe(false);
+      expect(auth.isAuthenticated()).toBe(false);
     });
   });
 });
