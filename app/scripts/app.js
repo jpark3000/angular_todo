@@ -12,7 +12,7 @@ angular.module('todoApp.services', []);
 
 var baseUrl = "http://recruiting-api.nextcapital.com"
 
-var todoApp = angular.module('todoApp', ['ngRoute', 'ngResource', 'todoApp.controllers', 'todoApp.services']);
+var todoApp = angular.module('todoApp', ['ngRoute', 'ngResource', 'ui.sortable', 'todoApp.controllers', 'todoApp.services']);
 
 
 todoApp.config(function($routeProvider) {
