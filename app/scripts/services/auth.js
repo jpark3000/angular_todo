@@ -3,14 +3,12 @@
 angular.module('todoApp.services')
   .factory('auth', function($http, $location, $window, $q) {
     var service = {};
-    service.isAuthenticated = false;
     
     service.request = function(data, url) {
       var deferred = $q.defer();
 
       $http.post(baseUrl + '/users' + url, data)
         .success(function(data) {
-          service.isAuthenticated = true;
           $window.sessionStorage.userId = data.id;
           $window.sessionStorage.apiToken = data.api_token;
           deferred.resolve(data)
@@ -19,6 +17,30 @@ angular.module('todoApp.services')
           deferred.reject(data)
         });
       return deferred.promise;
+    };
+
+    service.signOut = function() {
+      var deferred = $q.defer();
+      var data = {user_id: $window.sessionStorage.userId, api_token: $window.sessionStorage.apiToken}
+      var headers = {'Accept':'*/*', 'Content-Type':'application/json'}
+
+      $http.delete(baseUrl + '/users/sign_out', {headers: headers, data: data})
+        .success(function() {
+          $window.sessionStorage.clear();
+          deferred.resolve();
+        })
+        .error(function(data) {
+          deferred.reject(data);
+        });
+      return deferred.promise;
+    };
+
+    service.isAuthenticated = function() {
+      if ($window.sessionStorage.userId && $window.sessionStorage.apiToken) {
+        return true;
+      } else {
+        return false;
+      };
     };
 
     return service;
