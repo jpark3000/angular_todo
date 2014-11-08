@@ -14,6 +14,7 @@ angular.module('todoApp.controllers')
       var data = todos.sanitizeData(data)
       todos.request('post', todos.createUrl(), data)
         .then(function(data) {
+          $scope.todo = '';
           $scope.todos.push(data);
         }, function() {
           alert('error');
