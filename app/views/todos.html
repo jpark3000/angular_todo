@@ -1,5 +1,6 @@
 <div ng-controller="TodosCtrl">
   <h1>Todos</h1>
+  <a href="#" ng-click="signOut()">Sign Out</a>
   <ul>
     <li ng-repeat="todo in todos"> 
       <div ng-hide="todo.editable">
