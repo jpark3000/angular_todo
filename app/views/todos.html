@@ -1,20 +1,28 @@
 <div ng-controller="TodosCtrl">
-<h1>Todos</h1>
-<ul>
-  <li ng-repeat="todo in todos"> 
-    <div ng-hide="todo.editable">
-      <p>{{todo.description}}</p>
-      <button ng-click="edit(todo)">Edit</button>
+  <h1>Todos</h1>
+  <ul>
+    <li ng-repeat="todo in todos"> 
+      <div ng-hide="todo.editable">
+        <input type="checkbox" ng-model="todo.is_complete">
+        <p>{{todo.description}}</p>
+        <button ng-click="edit(todo)">Edit</button>
+      </div>
+      <div ng-show="todo.editable">
+        <form>
+          <div class="form-input">
+            <input id="todo" ng-model="editableTodo.description"></input>
+          </div>
+          <button ng-click="updateTodo(editableTodo, $index)">Save</button>
+          <button ng-click="cancelEdit(todo)">Cancel</button>
+        </form>
+      </div>
+    </li>
+  </ul>
+  <form>
+    <div class="form-input">
+      <input id="createTodo" ng-model="todo.description"></input>
     </div>
-    <div ng-show="todo.editable">
-      <form>
-        <div class="form-input">
-          <input id="todo" ng-model="editableTodo.description"></input>
-        </div>
-        <button ng-click="updateTodo(editableTodo, $index)">Save</button>
-        <button ng-click="cancelEdit(todo)">Cancel</button>
-      </form>
-    </div>
-  </li>
-</ul>
+    <button ng-click="createTodo(todo)">Create</button>
+  </form>
+</div>
 
