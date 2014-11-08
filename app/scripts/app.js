@@ -1,4 +1,3 @@
-'use strict';
 
 /**
  * @ngdoc overview
@@ -26,4 +25,14 @@ todoApp.config(function($routeProvider) {
       templateUrl: 'views/todos.html', 
       controller: 'TodosCtrl'
     })
+});
+
+todoApp.run(function($rootScope, $location, auth) {
+  $rootScope.$on('$routeChangeStart', function(event) {
+    if (auth.isAuthenticated()) {
+      $location.path('/todos')
+    } else {
+      $location.path('/')
+    };
+  });
 });
