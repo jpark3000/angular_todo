@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('todoApp.controllers')
-  .controller('TodosCtrl', function ($scope, todos) {
+  .controller('TodosCtrl', function ($scope, $location, todos, auth) {
 
     todos.request('get', todos.requestUrl())
       .then(function(data) {
@@ -37,7 +37,17 @@ angular.module('todoApp.controllers')
         .then(function(data) {
           $scope.todos[index] = data;
         }, function(data) {
-          alert('error')
+          alert('error');
+        });
+    };
+
+    $scope.signOut = function() {
+      auth.signOut()
+        .then(function() {
+          $location.path('/');
+        }, function(data) {
+          console.log(data)
+          alert('error');
         });
     };
   });
