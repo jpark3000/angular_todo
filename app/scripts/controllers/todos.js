@@ -3,12 +3,16 @@
 angular.module('todoApp.controllers')
   .controller('TodosCtrl', function ($scope, $location, todos, auth) {
 
-    todos.request('get', todos.requestUrl())
-      .then(function(data) {
-        $scope.todos = data;
-      }, function() {
-        alert('error');
-      });
+    var getTodos = function() {
+      todos.request('get', todos.requestUrl())
+        .then(function(data) {
+          $scope.todos = data;
+        }, function(data) {
+          alert(data.error);
+        });
+    };
+
+    if (auth.isAuthenticated()) { getTodos() };
 
     $scope.createTodo = function(data) {
       var data = todos.sanitizeData(data)
@@ -16,8 +20,8 @@ angular.module('todoApp.controllers')
         .then(function(data) {
           $scope.todo = '';
           $scope.todos.push(data);
-        }, function() {
-          alert('error');
+        }, function(data) {
+          alert(data.error);
         });
     };
 
@@ -37,7 +41,7 @@ angular.module('todoApp.controllers')
         .then(function(data) {
           $scope.todos[index] = data;
         }, function(data) {
-          alert('error');
+          alert(data.error);
         });
     };
 
@@ -46,8 +50,7 @@ angular.module('todoApp.controllers')
         .then(function() {
           $location.path('/');
         }, function(data) {
-          console.log(data)
-          alert('error');
+          alert(data.error);
         });
     };
   });
