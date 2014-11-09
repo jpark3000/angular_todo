@@ -1,10 +1,7 @@
-<form class="auth-form" ng-controller="AuthCtrl">
-  <div class="form-input">
-    <input id="email" placeholder="Email" ng-model="formInfo.email">
-  </div>
-  <div class="form-input">
-    <input id="password" type="password" placeholder="Password" ng-model="formInfo.password">
-  </div>
-  <a id="signup-link" href="#" ng-click="authorize(formInfo, '')">Sign Up</a>
-  <a id="login-link" href="#" ng-click="authorize(formInfo, '/sign_in')">Log In</a>
-</form>
+<div class="auth-form" ng-controller="AuthCtrl">
+  <input class="auth-input" placeholder="Email" ng-model="formInfo.email">
+  <input class="auth-input" type="password" placeholder="Password" ng-model="formInfo.password">
+ 
+  <a id="signup-link" class="big-link" href="" ng-click="authorize(formInfo, '')">Sign Up</a>
+  <a id="login-link" class="big-link" href="" ng-click="authorize(formInfo, '/sign_in')">Log In</a>
+</div>
