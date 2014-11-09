@@ -15,8 +15,12 @@ angular.module('todoApp.controllers')
       auth.request(data, url)
         .then(function() {
           $location.path('/todos');
-        }, function() {
-          alert('error');
+        }, function(data) {
+          if (data.error) {
+            alert(data.error);
+          } else if (data.email) {
+            alert("Email " + data.email[0])
+          };
         });
     };
   });
