@@ -22,7 +22,7 @@ angular.module('todoApp.services')
 
 
     service.requestUrl = function() {
-      return createUrl()
+      return this.createUrl()
               + '?api_token='
               + $window.sessionStorage.apiToken
     };
@@ -32,7 +32,11 @@ angular.module('todoApp.services')
               + '/users/'
               + $window.sessionStorage.userId
               + '/todos'
-    }
+    };
+
+    service.updateUrl = function(todoId) {
+      return this.createUrl() + '/' + todoId
+    };
 
     return service;
   });
