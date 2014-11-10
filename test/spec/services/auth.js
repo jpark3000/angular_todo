@@ -16,6 +16,11 @@ describe('Service: auth', function () {
     succesfulResponse = {'api_token':'123', 'email':'99@1.com', 'id':1, 'todos':[]};
   }));
 
+  afterEach(function() {
+    httpBackend.verifyNoOutstandingExpectation();
+    httpBackend.verifyNoOutstandingRequest();
+  });
+
   describe('successful authentication', function() {
     beforeEach(function() {
       httpBackend.expectPOST(baseUrl + '/users', postData).respond(succesfulResponse)
