@@ -22,7 +22,7 @@ angular.module('todoApp.services')
 
 
     service.requestUrl = function() {
-      return this.createUrl()
+      return createUrl()
               + '?api_token='
               + $window.sessionStorage.apiToken
     };
