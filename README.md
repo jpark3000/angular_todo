@@ -1,4 +1,4 @@
-angular_todo
+Angular Todo
 ============
 
 ## Getting Started
