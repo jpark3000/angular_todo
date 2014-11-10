@@ -9,8 +9,7 @@ angular.module('todoApp.services')
 
       $http.post(baseUrl + '/users' + url, data)
         .success(function(data) {
-          $window.sessionStorage.userId = data.id;
-          $window.sessionStorage.apiToken = data.api_token;
+          storeUser(data.id, data.api_token);
           deferred.resolve(data)
         })
         .error(function(data) {
@@ -42,6 +41,11 @@ angular.module('todoApp.services')
         return false;
       };
     };
+
+    var storeUser = function(id, apiToken) {
+      $window.sessionStorage.userId = id;
+      $window.sessionStorage.apiToken = apiToken;
+    }
 
     return service;
   })
