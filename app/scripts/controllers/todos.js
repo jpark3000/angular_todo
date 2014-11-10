@@ -25,19 +25,22 @@ angular.module('todoApp.controllers')
         });
     };
 
-    $scope.edit = function(todo) {
-      $scope.editableTodo = angular.copy(todo)
+    $scope.edit = function(todo, index) {
+      $scope.todos[$scope.prevEditableTodoIndex || 0].editable = false
+      $scope.prevEditableTodoIndex = index;
+      
+      $scope.editableTodo = angular.copy(todo);
       todo.editable = true;
     };
 
     $scope.cancelEdit = function(todo) {
-      $scope.editableTodo = null;
       todo.editable = false;
+      $scope.editableTodo = null;
     };
 
     $scope.updateTodo = function(todo, index) {   
       var data = todos.sanitizeData(todo) 
-      todos.request('put', todos.createUrl() + '/' + data.todo.id, data)
+      todos.request('put', todos.updateUrl(data.todo.id), data)
         .then(function(data) {
           $scope.todos[index] = data;
         }, function(data) {
