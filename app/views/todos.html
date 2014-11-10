@@ -7,7 +7,7 @@
       <ul class="todo-controls" ng-hide="todo.editable">
         <li><input type="checkbox" ng-model="todo.is_complete" ng-change="updateTodo(todo, $index)"></li>
         <li><p class="todo-description">{{todo.description}}</p></li>
-        <li><a href="" ng-click="edit(todo)">Edit</a></li>
+        <li><a href="" ng-click="edit(todo, $index)">Edit</a></li>
       </ul>
 
       <ul class="todo-controls" ng-show="todo.editable">
